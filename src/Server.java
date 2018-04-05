@@ -3,7 +3,7 @@ import java.util.*;
 import java.io.*;
 import java.net.*;public class Server
 {
-	public static void start(String[] args)
+	public static void main(String[] args)
 	{
 		final contain_4 c4_ovall=new contain_4();
 		final List<String> banned=new ArrayList<String>();
