@@ -10,7 +10,7 @@ import java.net.*;public class Server
 		readBanned(banned);
 		final Scanner sc=new Scanner(System.in);
 		Runtime r=Runtime.getRuntime();
-		System.out.println("[INFO] Available CPU:" + r.availableProcessors() + " Available RAM:" + r.maxMemory() / 1024 / 1024 + "now:" + new Date(System.currentTimeMillis()));
+		System.out.println("[INFO] 可用 CPU:" + r.availableProcessors() + " Available RAM:" + r.maxMemory() / 1024 / 1024 + "now:" + new Date(System.currentTimeMillis()));
 		while (true)
 		{
 			System.out.println("[INFO] Start port binding...");
