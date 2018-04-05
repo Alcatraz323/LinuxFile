@@ -28,7 +28,6 @@ import java.net.*;public class Server
 			}
 		}
 		System.out.println("[INFO] Port set\n[INFO] Listening: " + c4_ovall.getPort());
-		refRamT(c4_ovall);
 		System.err.println("[DEBUG] I/O test\n" + c4_ovall.get());
 		System.err.println("[DEBUG] I/O test complete");
 		System.out.println("[SERVER] Starting control thread....");
@@ -46,43 +45,8 @@ import java.net.*;public class Server
 								System.out.println("[INFO] Stopping");
 								System.exit(0);
 								break;
-							case "list":
-								System.out.println("Listing in num");
-								List<String> cur=c4_ovall.getList();
-								int indicator=0;
-								for (String i:cur)
-								{
-									System.out.println("<" + indicator + ">  " + i);
-									indicator++;
-								}
-								break;
-							case "new":
-								System.out.println("Please type in the item you want to add:");
-								String add=sc.next();
-								c4_ovall.getList().add(add);
-								saveToFile(c4_ovall);
-								break;
-							case "delete":
-								System.out.println("Please type in the index you want delete(run 'list' to check num):");
-								String del=sc.next();
-								int index;
-								try
-								{
-									index = Integer.parseInt(del);
-									c4_ovall.del(index);
-									saveToFile(c4_ovall);
-								}
-								catch (Exception e)
-								{
-									System.out.println("[ERROR] " + e.getMessage());
-								}
-
-								break;
-							case "ref":
-								refRamT(c4_ovall);
-								readBanned(banned);
-								System.out.println("[INFO] Refreshing variables");
-								break;
+							case "run":
+								
 							case "help":
 								System.out.println("new - add item\ndelete - delete specified item\nref - refresh variables\nlist - list items in num order\nexit - kill server\nhelp - display this information\nban - ban ip\nunban - unban ip\nlist-ban - list banned ips");
 								break;
@@ -231,31 +195,8 @@ import java.net.*;public class Server
 			return text;
 		}
 	}
-	public static void refRamT(contain_4 tar)
-	{
-		final List<String> temp=new LinkedList<String>();
-		tar.setString(read(new File("/root/cachelist.txt"), new line_op(){
-
-							  @Override
-							  public void onLineR(String l)
-							  {
-								  temp.add(l);
-								  // TODO: Implement this method
-							  }
-						  }));
-		tar.setList(temp);
-	}
-	public static void saveToFile(contain_4 tar)
-	{
-		String c="";
-		List<String> cur=tar.getList();
-		for (String i:cur)
-		{
-			c += i + "\n";
-		}
-		write(new File("/root/cachelist.txt"), c);
-		System.out.println("[INFO] Saved to file /root/cachelist.txt");
-	}
+	
+	
 	public static void saveToBanFile(List<String> sav)
 	{
 		String c="";
